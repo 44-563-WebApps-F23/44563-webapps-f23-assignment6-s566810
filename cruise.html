@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cruise Selection</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1 style="text-align: center; background-color: cornflowerblue;">Sangeetha Baddam goes on a cruise</h1>
+      <form id="crusieCheckboxForm">
+        <div class="form-group">
+          <label for="sharesCabin">sharesCabin:</label>
+          <input type="checkbox" id="sharesCabin" checked />
+        </div>
+        <div class="form-group">
+          <label for="breakfast">Breakfast:</label>
+          <input type="checkbox" id="breakfast"  checked />
+        </div>
+        <div class="form-group">
+          <label for="poolPass">poolPass:</label>
+          <input type="checkbox" id="poolPass"  />
+        </div>
+        <br />
+        <input
+          type="button"
+          class="btn btn-primary"
+          value="Select a Crusie"
+          onclick="selectCrusie()"
+        />
+        <br />
+        <div class="mt-2" id="result">Display results here..</div>
+      </form>
+    </div>
+    <br>
+    <div class="container">
+      <form id="textInputForm">
+        <div class="mt-2">
+          <label for="daysInput" class="form-label">Enter the number of days:</label>
+          <input type="text" id="daysInput" class="form-control" value="days"/>
+        </div>
+        <div class="mb-2">
+          <label for="priceInput" class="form-label">Enter Price:</label>
+          <input type="text" id="priceInput" class="form-control"/>
+        </div>
+        <input
+          type="button"
+          class="btn btn-warning"
+          value="Update the Crusie"
+          onclick="updateCrusie()"
+        />
+      </form>
+      <div class="mt-2" id="resultPrice">Display results here for price..</div>
+    </div>
+    <script>
+      var my_crusie = {};
+      function selectCrusie() {
+        my_crusie = {};
+        var sharesCabin = document.getElementById("sharesCabin").checked;
+        var breakfast = document.getElementById("breakfast").checked;
+        var poolPass = document.getElementById("poolPass").checked;
+
+        my_crusie.shared = sharesCabin;
+        my_crusie.breakfast = breakfast;
+        my_crusie.pool = poolPass;
+
+        var resultElement = document.getElementById("result");
+        resultElement.innerHTML = JSON.stringify(my_crusie);
+      }
+
+      function updateCrusie() {
+        my_crusie={};
+        var days = document.getElementById("daysInput").value;
+        var price = document.getElementById("priceInput").value;
+
+        my_crusie.days = days;
+        my_crusie.price = price;
+
+        var resultElement = document.getElementById("resultPrice");
+        resultElement.innerHTML = JSON.stringify(my_crusie);
+      }
+    </script>
+  </body>
+</html>
